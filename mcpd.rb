@@ -13,8 +13,16 @@ class MCPDaemon
         attr_accessor :plugins
 
 	def plugin_command(name,args,stdin,stdout,stderr)
-		@plugin=@plugins[name]
-		@plugin.command(args,stdin,stdout,stderr)
+		if not @plugins[name]
+			stderr.print "Plugin '#{name}' not found. Try one of these plugins:\n"
+			@plugins.keys.sort.each do |pluginname|
+				stderr.print "\t#{pluginname}\n"
+			end
+			1
+		else
+			@plugin=@plugins[name]
+			@plugin.command(args,stdin,stdout,stderr)
+		end
 	end
 
 	def plugin_load(name)
@@ -85,8 +93,8 @@ class MCPDaemon
                 @command=argv.join(' ')
                 begin
                         log("Client said to run #{@command}")
-                        stdout.puts "You said to run #{@command}\n"
 			name=argv.shift
+                        stdout.puts "You said to tell plugin '#{name}' the arguments '#{argv.join(',')}'\n"
 			plugin_command(name,argv,stdin,stdout,stderr)
                 rescue => detail
                         stderr.puts detail.message + "\n"

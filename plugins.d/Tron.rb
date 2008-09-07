@@ -3,7 +3,8 @@ class Tron
 
         def command(arg,stdin,stdout,stderr)
                 @daemon.log("Tron received command #{arg}")
-		stdout.print "Greetings user. Nothing to report.\n"
+		stdout.print "Greetings user. Nothing to report. You said '#{arg}'.\n"
+		0
         end
 
         def unload
