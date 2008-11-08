@@ -1,0 +1,15 @@
+Master Control Program
+
+This is a little project I dreamed up a few years ago, but never posted it
+outside of my blog:
+
+	http://ian.blenke.com/mcp
+
+It uses threads, file datestamp checking, and DRb in an attempt at a pluggable
+ruby based daemon with an interactive CLI interface.
+
+It's a beginning. An idea. It begs to be used as a CLI framework of some sort.
+
+Use it as you will. This is really just to make sure I don't lose it.
+
+- Ian C. Blenke <ian@blenke.com>
